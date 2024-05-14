@@ -59,7 +59,7 @@ def get_punchline_extractor(device='auto') -> Type[BertForSequenceClassification
     model.classifier.load_state_dict(torch.load(clf_punchline_weights_path, 
                                         map_location=torch.device(device)))
   
-    return model 
+    return model.to(device)
 
 
 def get_inference_model(device='auto') -> Type[BertForSequenceClassification]:
@@ -80,7 +80,7 @@ def get_inference_model(device='auto') -> Type[BertForSequenceClassification]:
     # Load in the correct top layer weights
     model.classifier.load_state_dict(torch.load(clf_inference_weights_path, 
                                         map_location=torch.device(device)))
-    return model 
+    return model.to(device)
 
 
 class PunchlineExtractorBot:
