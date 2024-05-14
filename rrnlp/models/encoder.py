@@ -9,7 +9,8 @@ from typing import Type, Tuple, List
 
 import torch
 import transformers 
-transformers.logging.set_verbosity_error()
+if hasattr(transformers.logging, 'set_verbosity_error'):
+    transformers.logging.set_verbosity_error()
 from transformers import AutoModel, AutoTokenizer, BertModel
 
 import numpy as np 
