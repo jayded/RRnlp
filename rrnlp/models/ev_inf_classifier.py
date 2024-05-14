@@ -160,7 +160,8 @@ class EvInfBot:
 
         # Infer direction.
         direction_probs = self.inf_bot.predict_for_sentence(pl_sent) 
-        return {"punchline_text": pl_sent, "effect": self.direction_strs[np.argmax(direction_probs)]}
+        effect = self.direction_strs[np.argmax(direction_probs)]
+        return {"punchline_text": pl_sent, "effect": effect, 'effect_prob': direction_probs.squeeze()[np.argmax(direction_probs)], 'effect_probs': dict(zip(self.direction_strs, direction_probs.squeeze().tolist()))}
 
 ###
 # e.g.
